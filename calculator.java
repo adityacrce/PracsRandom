@@ -6,18 +6,18 @@ public class javaCalculator
 
     public static void main(String[] args) 
     {
-        int num1;
-        int num2;
+        int numA;
+        int numB;
         String operation;
 
 
         Scanner input = new Scanner(System.in);
 
         System.out.println("please enter the first number");
-        num1 = input.nextInt();
+        numA = input.nextInt();
 
         System.out.println("please enter the second number");
-        num2 = input.nextInt();
+        numB = input.nextInt();
 
         Scanner op = new Scanner(System.in);
 
@@ -26,20 +26,20 @@ public class javaCalculator
 
         if (operation == "+");
         {
-            System.out.println("your answer is" + (num1 + num2));
+            System.out.println("your answer is" + (numA + numB));
         }
         if  (operation == "-");
         {
-            System.out.println("your answer is" + (num1 - num2));
+            System.out.println("your answer is" + (numA - numB));
         }
 
         if (operation == "/");
         {
-            System.out.println("your answer is" + (num1 / num2));
+            System.out.println("your answer is" + (numA / numB));
         }
         if (operation == "*")
         {
-            System.out.println("your answer is" + (num1 * num2));
+            System.out.println("your answer is" + (numA * numB));
         }
 
 
