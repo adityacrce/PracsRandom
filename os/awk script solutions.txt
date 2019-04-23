@@ -1,0 +1,138 @@
+Q6 -Q7)
+
+marks.txt
+
+1,Sanfer,70,80,78,90,89
+2,Benita,68,87,98,68,77
+3,Mayank,88,78,98,78,77
+4,Paul,55,45,88,34,99
+5,Peter,45,33,88,78,23
+
+command.awk
+
+#!/bin/awk
+
+BEGIN {
+	FS=",";
+}
+
+{
+	id[NR]=$1;
+	name[NR]=$2;
+	total[NR]=($3 + $4 + $5 +$6 + $7)
+	if (($3 && $4 >= 30) && ($5 && $6 && $7 >= 40))
+	result[NR]= "PASS"
+	else
+	result[NR]= "FAIL" 
+}
+
+END {
+	print "Showing results for "FNR" students \n";
+	i=1;
+	while (i<= FNR) {
+	printf("%d %-10s %.2f %s\n", id[i] , name[i] , total[i] , result[i++]);
+	}
+}
+
+
+Output:
+sanfer@sanfer--laptop:~$ awk -f command.awk marks.txt
+Showing results for 5 students 
+
+1 Sanfer     407.00 PASS
+2 Benita     398.00 PASS
+3 Mayank     419.00 PASS
+4 Paul       321.00 PASS
+5 Peter      267.00 FAIL
+
+
+
+q16)
+
+bookdetails.txt
+1 Linux-programming 2 450
+2 Advanced-Linux 3 300
+3 Computer-Networks 4 400
+4 OOAD&UML 3 450
+5 Java2 5 200
+
+command1.awk
+#!/bin/awk
+
+BEGIN {
+	FS=" ";
+}
+
+{
+	id[NR]=$1;
+	name[NR]=$2;
+	rate[NR]=$4;
+	soldtotal[NR]= $3 * $4;
+	total += soldtotal[NR];
+}
+
+END {
+	print "Sale report for "FNR" books:\n";
+	i=1;
+	while(i <= FNR) {
+	printf("%d %-20s %d %d\n", id[i] , name[i] , rate[i] , soldtotal[i++]);
+	}
+	printf("\n");
+	printf "Total sale = %d\n", total;
+}
+
+Output:
+sanfer@sanfer--laptop:~$ awk -f command1.awk bookdetails.txt
+Sale report for 5 books:
+
+1 Linux-programming    450 900
+2 Advanced-Linux       300 900
+3 Computer-Networks    400 1600
+4 OOAD&UML             450 1350
+5 Java2                200 1000
+
+Total sale = 5750
+
+
+q26)
+
+student-marks.txt
+Jones 2143 78 84 77
+Gondrol 2321 56 58 45
+RinRao 2122 38 37 65
+Edwin 2537 78 67 45
+Dayan 2415 30 47 20
+
+command2.awk
+#!/bin/awk
+
+BEGIN {
+	FS=" ";
+}
+
+{
+	name[NR]=$1;
+	average[NR]=($3 + $4 + $5)/3
+}
+
+END {
+	print "Report of average marks in the three tests for "FNR" students:\n";
+	i=1;
+	while(i <= FNR) {
+	printf("%-10s %.2f\n", name[i] , average[i++]);
+	}
+
+}
+
+Output:
+sanfer@sanfer--laptop:~$ awk -f command2.awk student-marks.txt
+Report of average marks in the three tests for 5 students:
+
+Jones      79.67
+Gondrol    53.00
+RinRao     46.67
+Edwin      63.33
+Dayan      32.33
+
+
+

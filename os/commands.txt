@@ -1,0 +1,80 @@
+
+1. 
+a) and b)
+mkdir  #to make directory
+cd name #to change directory
+cd ..   #to go to previous directory
+ls  #to list files
+ls -a #to list all files including hidden
+c)
+ls -l #gives info of all files and dirs
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l
+total 4
+-rw-r--r-- 1 sanfer sanfer    0 Apr 17 15:05 anotherhidden.txt~
+-rw-r--r-- 1 sanfer sanfer    0 Apr 17 14:59 audio.mp3
+-rw-r--r-- 1 sanfer sanfer    0 Apr 17 14:58 readme.txt
+-rw-r--r-- 1 sanfer sanfer    0 Apr 17 14:59 script.sh
+drwxr-xr-x 3 sanfer sanfer 4096 Apr 17 14:55 testdir2
+
+here,   -rw-r--r-- 1 sanfer sanfer    0 Apr 17 14:59 script.sh
+        123456789  -indexes
+	
+	2-4 represents file user permissions (here read and write only) (executable also if a executable file)
+	5-7 represents file group permissions (here read only)(executable also if a executable file)
+	8-10 represents file permission for everyone else (read only)
+
+		changing permissions
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l readme.txt
+-rw-r--r-- 1 sanfer sanfer 0 Apr 17 14:58 readme.txt
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ chmod o+wr readme.txt #added wr( read and write) to o(other people permissions)
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l readme.txt
+-rw-r--rw- 1 sanfer sanfer 0 Apr 17 14:58 readme.txt
+
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ chmod u-r readme.txt #removed r(read) from u (user permissions)
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l readme.txt
+--w-r--rw- 1 sanfer sanfer 0 Apr 17 14:58 readme.txt
+
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ chmod u-x testdir2 #removed x(executable- basically traversal permission for directory ) from u(user permissions) 
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l testdir2
+ls: cannot access 'testdir2/testdir3': Permission denied
+total 0
+d????????? ? ? ? ?            ? testdir3
+
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ chmod u+x testdir2 #added the permission again
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls -l testdir2
+total 4
+drwxr-xr-x 2 sanfer sanfer 4096 Apr 17 14:55 testdir3
+
+d) and e)
+ rm filename #delete file
+rmdir dirname # delete directory
+rm -r #delete non-empty directory
+f)
+rm -rf .* #removes all hidden files and directories in current directory
+g)
+sanfer@sanfer--laptop:~$ cp -r /home/sanfer/Desktop/commands/testdir1/* /home/sanfer/Desktop/testdir4
+                                   (address of dir 1)                         (address of dir 2)
+
+h)
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls
+app.js  index.html  style.css
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ mv app.js main.js
+sanfer@sanfer--laptop:~/Desktop/commands/testdir1$ ls
+index.html  main.js  style.css
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

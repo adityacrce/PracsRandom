@@ -1,0 +1,324 @@
+Q3)
+#!/bin/bash
+echo "Enter given file path"
+read path
+if [[ -d $path ]]
+then
+	echo "$path is a directory"
+	rmdir $path
+else
+	echo "$path is not a directory"
+fi
+
+Output:
+sanfer@sanfer--laptop:~$ ./direc.sh
+Enter given file path
+/home/sanfer/Desktop/test
+/home/sanfer/Desktop/test is a directory
+sanfer@sanfer--laptop:~$ cd Desktop
+sanfer@sanfer--laptop:~/Desktop$ ls
+ a.out    circle.c         'Dropped Text.txt'        'sem 4'
+ bres.c   django-playlist   jenkins_2.164.1_all.deb  'Shell scripting'
+ 
+
+Q14) a) Even odd
+#!/bin/bash
+echo "Enter the Number"
+read a
+b=$(($a % 2))
+if [ $b -eq 0 ]
+then
+echo "Given Number is Even "
+exit
+fi
+echo " Given Number is odd"
+
+Output:
+sanfer@sanfer--laptop:~$ ./even.sh
+Enter the Number
+4
+Given Number is Even
+
+b)palindrome
+#!/bin/bash
+echo "Enter a string"
+read name
+echo
+name1=`echo $name | rev` 
+if [ "$name" == "$name1" ]
+then 
+	echo "The string is in palindrome"
+else
+	echo "The string is not in palindrome"
+fi
+
+output:
+sanfer@sanfer--laptop:~$ ./palindrome.sh
+Enter a string
+sanfer
+
+The string is not in palindrome
+sanfer@sanfer--laptop:~$ ./palindrome.sh
+Enter a string
+aba
+
+The string is in palindrome
+
+
+q18)
+#!/bin/bash
+a=$1
+b=$3
+ch=$2
+if [ "$#" -lt 3 -o "$#" -gt 3 ]
+then
+	echo "Number of arguments not proper"
+	exit
+else
+case $ch in
+	+)res=`echo $a + $b | bc`
+	;;
+	-)res=`echo $a - $b | bc`
+	;;
+	\*)res=`echo $a \* $b | bc`
+	;;
+	/)res=`echo $a / $b | bc`
+	;;
+	*)echo "Syntax error"
+	exit
+	;;
+esac
+fi
+echo "Result: $res"
+
+Output:
+sanfer@sanfer--laptop:~$ ./calc.sh 1 + 2
+Result: 3
+sanfer@sanfer--laptop:~$ ./calc.sh 4 - 2
+Result: 2
+sanfer@sanfer--laptop:~$ ./calc.sh 6 \* 10
+Result: 60
+sanfer@sanfer--laptop:~$ ./calc.sh 10 / 2
+Result: 5
+sanfer@sanfer--laptop:~$ ./calc.sh 10 /
+Number of arguments not proper
+sanfer@sanfer--laptop:~$ ./calc.sh 10 / 2 4
+Number of arguments not proper
+
+q19)
+#!/bin/bash
+if [ $# -ne 2 ]
+then 
+echo "Insufficient arguments passed"
+else
+echo "sum of $1 and $2 is `expr $1 + $2`"
+fi
+
+Output:
+sanfer@sanfer--laptop:~$ ./com.sh 10 20
+sum of 10 and 20 is 30
+sanfer@sanfer--laptop:~$ ./com.sh 10
+Insufficient arguments passed
+sanfer@sanfer--laptop:~$ 
+
+q20)
+#!/bin/bash
+echo "Enter a number"
+read num
+num1=`echo $num | rev`
+echo $num1
+
+Output:
+sanfer@sanfer--laptop:~$ ./reverse.sh
+Enter a number
+12345678
+87654321
+sanfer@sanfer--laptop:~$ ./reverse.sh
+Enter a number
+5820
+0285
+
+q24)
+#!/bin/bash
+if [ $# -ne 3 ]
+then 
+echo "Insufficient arguments passed"
+elif [ $1 -gt $2 -a $1 -gt $3 ]
+then
+	echo "$1 is the greatest"
+elif [ $2 -gt $3 -a $2 -gt $1 ]
+then 
+	echo "$2 is the greatest"
+else
+	echo "$3 is the greatest"
+fi
+
+Output:
+sanfer@sanfer--laptop:~$ ./great.sh 44 23 
+Insufficient arguments passed
+sanfer@sanfer--laptop:~$ ./great.sh 44 23 77
+77 is the greatest
+
+q28)
+
+#!/bin/bash
+echo "Enter file name:"
+read file
+choice=1
+while [ $choice != 7 ]
+do
+echo "............Menu.........."
+echo "1.Display owner and group information"
+echo "2.Number of lines in the file"
+echo "3.Number of words in the file"
+echo "4.Count occurences of of a word in the file"
+echo "5.Replace a word with another in the file"
+echo "6.Display the file"
+echo "7.Exit"
+echo
+echo "Enter your choice:"
+read choice
+case $choice in
+	1) 
+		stat -c "%U %G" $file
+		;;
+	2)
+		echo "The number of lines in the file is:"
+		wc -l < $file
+		;;
+	3)
+		echo "The number of words in the file is:"
+		wc -w < $file
+		;;
+	4)
+		echo "Enter the word"
+		read word
+		grep -o $word $file | wc -w
+		;;
+	5)
+		cat $file
+		echo "Enter word to be replaced:"
+		read first
+		echo "Enter new word:"
+		read second
+		sed -i "s~$first~$second~g" $file
+		echo "The word has been replaced!"
+		cat $file
+		;;
+	6)
+		cat $file
+		;;
+	7)
+		exit
+		;;
+		
+	*)
+		echo "Didnt get you"
+		;;
+esac
+done
+
+Output:
+sanfer@sanfer--laptop:~$ ./file.sh
+Enter file name:
+/home/sanfer/Desktop/test.txt
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+1
+sanfer sanfer
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+2
+The number of lines in the file is:
+1
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+3
+The number of words in the file is:
+16
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+4
+Enter the word
+tinker
+4
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+5
+This is a test file. Do feel free to tinker around with it. tinker tinker tinker.
+Enter word to be replaced:
+tinker
+Enter new word:
+play
+The word has been replaced!
+This is a test file. Do feel free to play around with it. play play play.
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+6
+This is a test file. Do feel free to play around with it. play play play.
+............Menu..........
+1.Display owner and group information
+2.Number of lines in the file
+3.Number of words in the file
+4.Count occurences of of a word in the file
+5.Replace a word with another in the file
+6.Display the file
+7.Exit
+
+Enter your choice:
+7
+sanfer@sanfer--laptop:~$ 
+
+
+
+
+
+
